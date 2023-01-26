@@ -21,11 +21,14 @@ jobs:
       - name: Install deps
         run: |
           sudo apt update
+          sudo apt install libssl-dev ninja-build libz-dev libpython3-dev
       - uses: Jimver/cuda-toolkit@v0.2.8
         id: cuda-toolkit
         with:
           cuda: "11.7.0"
       - name: Run cmake
+        env:
+          CUDACXX: ${{ steps.cuda-toolkit.outputs.CUDA_PATH }}/bin/nvcc
         run: |
           mkdir build 
           cd build 
