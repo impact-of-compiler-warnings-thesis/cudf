@@ -32,7 +32,7 @@ jobs:
         run: |
           mkdir build 
           cd build 
-          cmake ../cpp -GNinja --target all
+          cmake ../cpp -GNinja -DCUDF_BUILD_TESTUTIL=Off -DBUILD_SHARED_LIBS=Off -DBUILD_BENCHMARKS=Off -DBUILD_BENCHMARKS=Off --target all
       - name: Run build-wrapper
         run: |
           build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} ninja -C build
